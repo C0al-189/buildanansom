@@ -75,12 +75,11 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      overflow-x: auto; /* Enable horizontal scrolling */
+      overflow-x: auto !important; /* Enable horizontal scrolling */
       overflow-y: hidden; /* Hide vertical scrolling */
-      white-space: nowrap;
     }
     .itembuttons::-webkit-scrollbar {
-      width: 12px; /* Width of the scrollbar */
+      width: none; /* Width of the scrollbar */
     }
 
     .itembuttons::-webkit-scrollbar-track {
@@ -144,10 +143,10 @@
 
   <div class="randomanderasebutton">
     <button id="dice" onclick="randombuttonclick()">
-      <img src="dice.png">
+      <img src="dice.png" style="left: calc(50% - 80px);">
     </button>
     <button id="eraser" onclick="resetansom()">
-      <img src="eraser.png">
+      <img src="eraser.png"style="left: calc(50% + 20px);">
     </button>
   </div>
   <div class="itembuttons">
