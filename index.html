@@ -8,14 +8,17 @@
   <link rel="icon" href="icon.png" type="image/x-icon">
   <style>
     @font-face {
-        font-family: 'CustomFont';
-        src: url('casagrande-grind-wide.woff2') format('woff2'),  /* Modern Browsers */
-             url('casagrande-grind-wide.woff') format('woff');    /* Legacy Browsers */
-        /* Add additional font formats if needed */
+      font-family: 'CustomFont';
+      src: url('casagrande-grind-wide.woff2') format('woff2'),
+        /* Modern Browsers */
+        url('casagrande-grind-wide.woff') format('woff');
+      /* Legacy Browsers */
+      /* Add additional font formats if needed */
     }
+
     body {
       overflow: hidden;
-      background-color: #FAB12E!important;
+      background-color: #FAB12E !important;
       position: relative;
       height: 100vh;
       margin: 0;
@@ -48,14 +51,15 @@
       padding: 0;
       cursor: pointer;
       outline: none;
+      z-index: 4;
     }
 
     .top-center {
-        position: fixed;
-        top: 0px;
-        left: 50%;
-        transform: translateX(-50%);
-        padding: 10px;
+      position: fixed;
+      top: 0px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px;
     }
   </style>
 </head>
@@ -73,37 +77,92 @@
   <img id="holdingitem" src="">
   <button id="random" onclick="randombuttonclick()">
     <img src="dice.png" width="100" height=auto style="position: relative; top: 50px; right: 0px;">
+    <button id="hetbutton" data-group="hat" onclick="additem(this)">
+      <img src="het_button.png" style="position: fixed; left: 5%; top: 50%; transform: translateY(-50%);">
+    <button id="crownbutton" data-group="hat" onclick="additem(this)">
+        <img src="crown_button.png" style="position: fixed; left: 5%; top: 30%; transform: translateY(-50%);">
+    <button id="hairbutton" data-group="hat" onclick="additem(this)">
+        <img src="hair_button.png" style="position: fixed; left: 7%; top: 70%; transform: translateY(-50%);">
+    
+      
+    <button id="bluntbutton" data-group="mouth" onclick="additem(this)">
+          <img src="blunt_button.png" style="position: fixed; left: 10%; top: 85%; transform: translateY(-50%);">
 
-  <script>
-    const mouthitem_list = ["blunt.png", ""];
-    const hatitem_list = ["het.png", "hair.png", "crown.png", ""]
-    const glasses_list = ["sunglasses.png", "red_eyes.png",""]
-    const neck_list = ["gold_chain.png", "tie.png", ""]
-    const shirt_list = ["white_shirt.png", "wif_shirt.png", ""]
-    const holding_list = ["boxing_gloves.png", ""]
 
-    function randombuttonclick() {
-      let mouthindex = Math.floor(Math.random() * mouthitem_list.length)
-      let hatindex = Math.floor(Math.random() * hatitem_list.length)
-      let glassesindex = Math.floor(Math.random() * glasses_list.length)
-      let neckitemindex = Math.floor(Math.random() * neck_list.length)
-      let shirtitemindex = Math.floor(Math.random() * shirt_list.length)
-      let holdingitemindex = Math.floor(Math.random() * holding_list.length)
+    <button id="sunglassesbutton" data-group="glasses" onclick="additem(this)">
+          <img src="sunglasses_button.png" style="position: fixed; left: 20%; top: 30%; transform: translateY(-50%);">
+    <button id="redeyesbutton" data-group="glasses" onclick="additem(this)">
+        <img src="red_eyes_button.png" style="position: fixed; left: 22%; top: 50%; transform: translateY(-50%);">
 
-      document.getElementById('mouthitem').src = mouthitem_list[mouthindex]
-      document.getElementById('hatitem').src = hatitem_list[hatindex]
-      document.getElementById('glassesitem').src = glasses_list[glassesindex]
-      document.getElementById('neckitem').src = neck_list[neckitemindex]
-      document.getElementById('shirtitem').src = shirt_list[shirtitemindex]
-      document.getElementById('holdingitem').src = holding_list[holdingitemindex]
-    }
+    <button id="goldchainbutton" data-group="neck" onclick="additem(this)">
+        <img src="gold_chain_button.png" style="position: fixed; left: 22%; top: 70%; transform: translateY(-50%);">
+    <button id="tiebutton" data-group="neck" onclick="additem(this)">
+        <img src="tie_button.png" style="position: fixed; left: 22%; top: 85%; transform: translateY(-50%);">
 
-    function onclick()
-    {
-      var buttonText = event.target.textContent;
-      console.log(buttonText)
-    }
-  </script>
+    <button id="whiteshirtbutton" data-group="shirt" onclick="additem(this)">
+        <img src="white_shirt_button.png" style="position: fixed; left: 70%; top: 30%; transform: translateY(-50%);">
+    <button id="wifshirtbutton" data-group="shirt" onclick="additem(this)">
+        <img src="wif_shirt_button.png" style="position: fixed; left: 70%; top: 50%; transform: translateY(-50%);">
+
+    <button id="boxingglovesbutton" data-group="shirt" onclick="additem(this)">
+        <img src="boxing_gloves_button.png" style="position: fixed; left: 70%; top: 70%; transform: translateY(-50%);">
+    
+    
+  </button>
+
+
+    <script>
+      const mouthitem_list = ["blunt.png", ""];
+      const hatitem_list = ["het.png", "hair.png", "crown.png", ""]
+      const glasses_list = ["sunglasses.png", "red_eyes.png", ""]
+      const neck_list = ["gold_chain.png", "tie.png", ""]
+      const shirt_list = ["white_shirt.png", "wif_shirt.png", ""]
+      const holding_list = ["boxing_gloves.png", ""]
+
+      const wearing = {"mouth":"","hat":"", "glasses":"", "neck":"", "shirt":"", "holding":""};
+
+      function randombuttonclick() {
+        let mouthindex = Math.floor(Math.random() * mouthitem_list.length)
+        let hatindex = Math.floor(Math.random() * hatitem_list.length)
+        let glassesindex = Math.floor(Math.random() * glasses_list.length)
+        let neckitemindex = Math.floor(Math.random() * neck_list.length)
+        let shirtitemindex = Math.floor(Math.random() * shirt_list.length)
+        let holdingitemindex = Math.floor(Math.random() * holding_list.length)
+
+        wearing["mouth"] = mouthitem_list[mouthindex]
+        wearing["hat"] = hatitem_list[hatindex]
+        wearing["glasses"] = glasses_list[glassesindex]
+        wearing["neck"] = neck_list[neckitemindex]
+        wearing["shirt"] = shirt_list[shirtitemindex]
+        wearing["holding"] = holding_list[holdingitemindex]
+        
+        updateansom(wearing)
+      }
+
+      function additem(button) {
+        var image = button.querySelector("img");
+        var src = image.getAttribute("src");
+        let newsrc = src.replace("_button","")
+        var dataGroup = button.getAttribute('data-group');
+        console.log(wearing[dataGroup])
+        if (wearing[dataGroup] === "" || wearing[dataGroup] !== newsrc) {
+            wearing[dataGroup] = newsrc;
+        } else {
+            wearing[dataGroup] = "";
+        }
+        updateansom(wearing);
+      }
+
+      function updateansom(wearing){
+        document.getElementById('mouthitem').src = wearing["mouth"];
+        document.getElementById('hatitem').src = wearing["hat"];
+        document.getElementById('glassesitem').src = wearing["glasses"];
+        document.getElementById('neckitem').src = wearing["neck"];
+        document.getElementById('shirtitem').src = wearing["shirt"];
+        document.getElementById('holdingitem').src = wearing["holding"];
+
+      }
+    </script>
 
 </body>
 
