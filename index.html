@@ -34,7 +34,7 @@
       transform: translate(-50%, -50%);
     }
 
-    img.ui{
+    img.ui {
       transform: translate(-50%, -50%);
     }
 
@@ -81,11 +81,11 @@
       overflow-x: auto;
       overflow-y: hidden;
 
-      
+
       overscroll-behavior-inline: contain;
     }
 
-    .media-element button img{
+    .media-element button img {
       max-width: 100%;
     }
 
@@ -144,78 +144,83 @@
   </div>
   -->
   <div class="itembuttons_scroller">
-    <div class = "media-element"> 
-      <button id="hetbutton" data-group="hat" onclick = "additem(this)">
+    <div class="media-element">
+      <button id="hetbutton" data-group="hat" onclick="additem(this)">
         <img src="het_button.png">
       </button>
 
     </div>
-    <div class = "media-element">
+    <div class="media-element">
       <button id="hairbutton" data-group="hat" onclick="additem(this)">
         <img src="hair_button.png">
       </button>
     </div>
-    <div class = "media-element">
+    <div class="media-element">
       <button id="crownbutton" data-group="hat" onclick="additem(this)">
         <img src="crown_button.png">
       </button>
     </div>
-    <div class = "media-element">
-      <button id="bluntbutton" data-group="mouth"onclick="additem(this)">
+    <div class="media-element">
+      <button id="bluntbutton" data-group="mouth" onclick="additem(this)">
         <img src="blunt_button.png">
       </button>
     </div>
-    <div class = "media-element">
+    <div class="media-element">
       <button id="sunglassesbutton" data-group="glasses" onclick="additem(this)">
         <img src="sunglasses_button.png">
       </button>
     </div>
-    <div class = "media-element">
+    <div class="media-element">
       <button id="redeyesbutton" data-group="glasses" onclick="additem(this)">
         <img src="red_eyes_button.png">
       </button>
     </div>
-    <div class = "media-element">
+    <div class="media-element">
+      <button id="blackeyesbutton" data-group="glasses" onclick="additem(this)">
+        <img src="black_eye_button.png">
+      </button>
+    </div>
+    <div class="media-element">
       <button id="goldchainbutton" data-group="neck" onclick="additem(this)">
         <img src="gold_chain_button.png">
       </button>
     </div>
-    <div class = "media-element">
+    <div class="media-element">
       <button id="tiebutton" data-group="neck" onclick="additem(this)">
         <img src="tie_button.png">
       </button>
     </div>
-    <div class = "media-element">
+    <div class="media-element">
       <button id="whiteshirtbutton" data-group="shirt" onclick="additem(this)">
         <img src="white_shirt_button.png">
       </button>
     </div>
-    <div class = "media-element">
+    <div class="media-element">
       <button id="wifshirtbutton" data-group="shirt" onclick="additem(this)">
-      <img src="wif_shirt_button.png">
+        <img src="wif_shirt_button.png">
       </button>
     </div>
-    <div class = "media-element">
+    <div class="media-element">
       <button id="ansom_shirt_button" data-group="shirt" onclick="additem(this)">
         <img src="ansom_shirt_button.png">
       </button>
     </div>
-    <div class = "media-element">
+    <div class="media-element">
       <button id=" boxingglovesbutton" data-group="holding" onclick="additem(this)">
         <img src="boxing_gloves_button.png">
       </button>
     </div>
-    <div class = "media-element">
+    <div class="media-element">
       <button id="gunbutton" data-group="holding" onclick="additem(this)">
         <img src="gun_button.png">
       </button>
     </div>
-    <div class = "media-element">
+    <div class="media-element">
       <button id="moneybutton" data-group="holding" onclick="additem(this)">
         <img src="money_button.png">
       </button>
     </div>
-    <div class = "media-element">
+    <div class="media-element">
       <button id="hobbesbutton" data-group="holding" onclick="additem(this)">
         <img src="hobbes_button.png">
       </button>
@@ -225,12 +230,12 @@
 
   <script>
 
-    
+
     const mouthitem_list = ["blunt.png", ""];
     const hatitem_list = ["het.png", "hair.png", "crown.png", ""]
-    const glasses_list = ["sunglasses.png", "red_eyes.png", ""]
+    const glasses_list = ["sunglasses.png", "red_eyes.png", "black_eyes.png",""]
     const neck_list = ["gold_chain.png", "tie.png", ""]
-    const shirt_list = ["white_shirt.png", "wif_shirt.png", "ansom_shirt",""]
+    const shirt_list = ["white_shirt.png", "wif_shirt.png", "ansom_shirt", ""]
     const holding_list = ["boxing_gloves.png", "gun.png", "money.png", "hobbes.png"]
 
     const wearing = {"mouth": "", "hat": "", "glasses": "", "neck": "", "shirt": "", "holding": ""};
