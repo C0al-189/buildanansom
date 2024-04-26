@@ -68,7 +68,6 @@
       left: 50%;
       top: 60px;
       overflow: hidden;
-      border: 1px solid black;
     }
 
     .itembuttons_scroller {
@@ -146,9 +145,10 @@
   -->
   <div class="itembuttons_scroller">
     <div class = "media-element"> 
-      <button id="hetbutton" data-group="hat" onclick="additem(this)">
-      <img src="het_button.png">
-    </button> 
+      <button id="hetbutton" data-group="hat" onclick = "additem()">
+        <img src="het_button.png">
+      </button>
+
     </div>
     <div class = "media-element">
       <button id="hairbutton" data-group="hat" onclick="additem(this)">
@@ -246,15 +246,16 @@
     function additem(button) {
       var image = button.querySelector("img");
       var src = image.getAttribute("src");
-      let newsrc = src.replace("_button", "")
+      let newsrc = src.replace("_button", "");
       var dataGroup = button.getAttribute('data-group');
-      if (wearing[dataGroup] === "" || wearing[dataGroup] !== newsrc) {
-        wearing[dataGroup] = newsrc;
+      if (wearing[dataGroup] === newsrc) {
+        wearing[dataGroup] = ""; // Remove the item if it's already added
       } else {
-        wearing[dataGroup] = "";
+        wearing[dataGroup] = newsrc; // Add the item if it's not already added
       }
       updateansom(wearing);
     }
+
 
     function updateansom(wearing) {
       document.getElementById('mouthitem').src = wearing["mouth"];
@@ -264,10 +265,6 @@
       document.getElementById('shirtitem').src = wearing["shirt"];
       document.getElementById('holdingitem').src = wearing["holding"];
 
-    }
-    function resetansom() {
-      let wearing = {"mouth": "", "hat": "", "glasses": "", "neck": "", "shirt": "", "holding": ""};
-      updateansom(wearing);
     }
   </script>
 
