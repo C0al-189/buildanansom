@@ -25,12 +25,16 @@
       margin: 0;
     }
 
-    img {
+    img.ansom_img {
       position: fixed;
       top: 45%;
       left: 50%;
-      max-width: 50%;
+      max-width: 100%;
       height: auto;
+      transform: translate(-50%, -50%);
+    }
+
+    img.ui{
       transform: translate(-50%, -50%);
     }
 
@@ -55,46 +59,34 @@
       cursor: pointer;
       outline: none;
       padding: 4px;
-      z-index: 4;
     }
 
     .top-center {
       position: absolute;
-      top: 0px;
       width: 100%;
       height: 10%;
-      top: 10px;
+      left: 50%;
+      top: 50px;
     }
 
-    .itembuttons {
-      position: absolute;
+    .itembuttons_scroller {
+      display: grid;
+      position: fixed;
+      bottom: 0;
       width: 100%;
-      height: 30%;
-      top: 85%;
-      transform: translateY(-50%);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow-x: auto !important; /* Enable horizontal scrolling */
-      overflow-y: hidden; /* Hide vertical scrolling */
-    }
-    .itembuttons::-webkit-scrollbar {
-      width: none; /* Width of the scrollbar */
+      gap: var(--size-3);
+      grid-auto-flow: column;
+      grid-auto-columns: 23%;
+      overflow-x: auto;
+      overflow-y: hidden;
+
+      
+      overscroll-behavior-inline: contain;
     }
 
-    .itembuttons::-webkit-scrollbar-track {
-      background-color: #FAB12E; /* Color of the scrollbar track */
+    .media-element button img{
+      max-width: 100%;
     }
-
-    .itembuttons::-webkit-scrollbar-thumb {
-      background-color: #888; /* Color of the scrollbar thumb */
-      border-radius: 6px; /* Radius of the scrollbar thumb */
-    }
-
-    .itembuttons::-webkit-scrollbar-thumb:hover {
-      background-color: #555; /* Color of the scrollbar thumb on hover */
-    }
-
 
     .itembuttons button img {
       max-width: 30%;
@@ -120,7 +112,8 @@
     }
 
     .randomanderasebutton button img {
-      max-width: 100px;
+      position: fixed;
+      width: 100%;
       height: auto;
       right: 50%;
       top: 20%;
@@ -130,70 +123,92 @@
 
 <body>
   <div class="top-center">
-    <img src="Header text.png" style=" position:absolute; max-width: 100%; height: auto;">
+    <img class="ui" src="Header text.png" style=" position:absolute; max-width: 100%; height: auto;">
   </div>
 
-  <img src="Ansom_blank.png">
-  <img id="hatitem" src="">
-  <img id="glassesitem" src="">
-  <img id="mouthitem" src="">
-  <img id="neckitem" src="">
-  <img id="shirtitem" src="">
-  <img id="holdingitem" src="">
-
+  <img class="ansom_img" src="Ansom_blank.png">
+  <img class="ansom_img" id="hatitem" src="">
+  <img class="ansom_img" id="glassesitem" src="">
+  <img class="ansom_img" id="mouthitem" src="">
+  <img class="ansom_img" id="neckitem" src="">
+  <img class="ansom_img" id="shirtitem" src="">
+  <img class="ansom_img" id="holdingitem" src="">
+  <!--
   <div class="randomanderasebutton">
     <button id="dice" onclick="randombuttonclick()">
-      <img src="dice.png" style="left: calc(50% - 80px);">
+      <img src="dice.png" class="ui">
     </button>
     <button id="eraser" onclick="resetansom()">
-      <img src="eraser.png"style="left: calc(50% + 20px);">
+      <img src="eraser.png" class="ui">
     </button>
   </div>
-  <div class="itembuttons">
-    <button id="hetbutton" data-group="hat" onclick="additem(this)">
-      <img src="het_button.png" style="left:100px;">
-    </button>
-    <button id="crownbutton" data-group="hat" onclick="additem(this)">
-      <img src="crown_button.png" style="left:300px;"">
-    </button>
-    <button id="hairbutton" data-group="hat" onclick="additem(this)">
-      <img src="hair_button.png" style="left:500px;">
-    </button>
-
-    <button id="bluntbutton" data-group="mouth" onclick="additem(this)">
-      <img src="blunt_button.png" style="left:700px;">
-    </button>
-
-
-    <button id="sunglassesbutton" data-group="glasses" onclick="additem(this)">
-      <img src="sunglasses_button.png" style="left:900px;">
-    </button>
-    <button id="redeyesbutton" data-group="glasses" onclick="additem(this)">
-      <img src="red_eyes_button.png" style="left:1100px;">
-    </button>
-    <button id="goldchainbutton" data-group="neck" onclick="additem(this)">
-      <img src="gold_chain_button.png" style="left:1300px;">
-    </button>
-    <button id="tiebutton" data-group="neck" onclick="additem(this)">
-      <img src="tie_button.png" style="left:1500px;">
-    </button>
-
-    <button id="whiteshirtbutton" data-group="shirt" onclick="additem(this)">
-      <img src="white_shirt_button.png" style="left:1700px;">
-    </button>
-    <button id="wifshirtbutton" data-group="shirt" onclick="additem(this)">
-      <img src="wif_shirt_button.png" style="left:1900px;">
+  -->
+  <div class="itembuttons_scroller">
+    <div class = "media-element"> 
+      <button id="hetbutton" data-group="hat" onclick="additem(this)">
+      <img src="het_button.png">
+    </button> 
+    </div>
+    <div class = "media-element">
+      <button id="hairbutton" data-group="hat" onclick="additem(this)">
+        <img src="hair_button.png">
       </button>
-
+    </div>
+    <div class = "media-element">
+      <button id="crownbutton" data-group="hat" onclick="additem(this)">
+        <img src="crown_button.png">
+      </button>
+    </div>
+    <div class = "media-element">
+      <button id="bluntbutton" data-group="mouth"onclick="additem(this)">
+        <img src="blunt_button.png">
+      </button>
+    </div>
+    <div class = "media-element">
+      <button id="sunglassesbutton" data-group="glasses" onclick="additem(this)">
+        <img src="sunglasses_button.png">
+      </button>
+    </div>
+    <div class = "media-element">
+      <button id="redeyesbutton" data-group="glasses" onclick="additem(this)">
+        <img src="red_eyes_button.png">
+      </button>
+    </div>
+    <div class = "media-element">
+      <button id="goldchainbutton" data-group="neck" onclick="additem(this)">
+        <img src="gold_chain_button.png">
+      </button>
+    </div>
+    <div class = "media-element">
+      <button id="tiebutton" data-group="neck" onclick="additem(this)">
+        <img src="tie_button.png">
+      </button>
+    </div>
+    <div class = "media-element">
+      <button id="whiteshirtbutton" data-group="shirt" onclick="additem(this)">
+        <img src="white_shirt_button.png">
+      </button>
+    </div>
+    <div class = "media-element">
+      <button id="wifshirtbutton" data-group="shirt" onclick="additem(this)">
+      <img src="wif_shirt_button.png">
+      </button>
+    </div>
+    <div class = "media-element">
       <button id=" boxingglovesbutton" data-group="holding" onclick="additem(this)">
-      <img src="boxing_gloves_button.png" style="left:2200px;">
-    </button>
-    <button id="gunbutton" data-group="holding" onclick="additem(this)">
-      <img src="gun_button.png" style="left:2400px;">
-    </button>
-    <button id="moneybutton" data-group="holding" onclick="additem(this)">
-      <img src="money_button.png" style="left:2500px;">
-    </button>
+        <img src="boxing_gloves_button.png">
+      </button>
+    </div>
+    <div class = "media-element">
+      <button id="gunbutton" data-group="holding" onclick="additem(this)">
+        <img src="gun_button.png">
+      </button>
+    </div>
+    <div class = "media-element">
+      <button id="moneybutton" data-group="holding" onclick="additem(this)">
+        <img src="money_button.png">
+      </button>
+    </div>
   </div>
 
 
