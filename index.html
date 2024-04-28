@@ -325,8 +325,12 @@
     }
 
     function resetansom() {
-      let wearing = {"mouth": "", "hat": "", "glasses": "", "neck": "", "shirt": "", "holding": ""};
-      updateansom(wearing);
+      var confirmReset = window.confirm("Are you sure you want to erase?");
+
+      if (confirmReset) {
+        let wearing = {"mouth": "", "hat": "", "glasses": "", "neck": "", "shirt": "", "holding": ""};
+        updateansom(wearing);
+      }
     }
     
     document.getElementById("eraser").addEventListener("click", resetansom);
