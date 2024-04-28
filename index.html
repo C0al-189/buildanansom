@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Build A $Ansom</title>
   <link rel="icon" href="icon.png" type="image/x-icon">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
@@ -32,6 +32,7 @@
       max-width: 100%;
       height: auto;
       transform: translate(-50%, -50%);
+      border: 1px solid black;
     }
 
     img.ui {
@@ -69,6 +70,7 @@
     .top-center img.ui {
       max-width: 100%;
       height: auto;
+      overflow: hidden;
     }
 
     .top-center button img{
@@ -98,6 +100,7 @@
 
     .media-element button img {
       max-width: 100%;
+      border: 1px solid black;
     }
 
     .itembuttons button img {
@@ -121,7 +124,7 @@
     <button id="dice" onclick="randombuttonclick()">
       <img src="dice.png">
     </button>
-    <button id="eraser" onclick="resetansom()">
+    <button id="eraser">
       <img src="eraser.png" style="position:fixed; left: 85%;">
     </button>
   </div>
@@ -271,6 +274,8 @@
 
       updateansom(wearing)
     }
+    const eraserButton = document.getElementById("eraser");
+    eraserButton.addEventListener("touchstart", resetansom);  // Add the listener once
 
     function additem(button) {
       var image = button.querySelector("img");
@@ -287,27 +292,52 @@
 
 
     function updateansom(wearing) {
-      console.log(wearing)
       document.getElementById('mouthitem').src = wearing["mouth"];
       document.getElementById('hatitem').src = wearing["hat"];
       document.getElementById('glassesitem').src = wearing["glasses"];
       document.getElementById('neckitem').src = wearing["neck"];
       document.getElementById('shirtitem').src = wearing["shirt"];
       document.getElementById('holdingitem').src = wearing["holding"];
+      
+      document.getElementById('hatitem').style.display = 'none';
+      document.getElementById('hatitem').offsetHeight; // This forces the browser to repaint
+      document.getElementById('hatitem').style.display = 'block';
+
+      document.getElementById('mouthitem').style.display = 'none';
+      document.getElementById('mouthitem').offsetHeight; // This forces the browser to repaint
+      document.getElementById('mouthitem').style.display = 'block';
+
+      document.getElementById('glassesitem').style.display = 'none';
+      document.getElementById('glassesitem').offsetHeight; // This forces the browser to repaint
+      document.getElementById('glassesitem').style.display = 'block';
+
+      document.getElementById('neckitem').style.display = 'none';
+      document.getElementById('neckitem').offsetHeight; // This forces the browser to repaint
+      document.getElementById('neckitem').style.display = 'block';
+
+      document.getElementById('shirtitem').style.display = 'none';
+      document.getElementById('shirtitem').offsetHeight; // This forces the browser to repaint
+      document.getElementById('shirtitem').style.display = 'block';
+
+      document.getElementById('holdingitem').style.display = 'none';
+      document.getElementById('holdingitem').offsetHeight; // This forces the browser to repaint
+      document.getElementById('holdingitem').style.display = 'block';
+
 
     }
 
     function resetansom() {
-      const wearing = {"mouth": "", "hat": "", "glasses": "", "neck": "", "shirt": "", "holding": ""};
+      let wearing = {"mouth": "", "hat": "", "glasses": "", "neck": "", "shirt": "", "holding": ""};
       updateansom(wearing);
     }
+    
+    document.getElementById("eraser").addEventListener("click", resetansom);
     document.addEventListener('DOMContentLoaded', function() {
       var screenWidth = window.innerWidth;
       var header = document.querySelector('.top-center')
       var dice = document.querySelector('.top-center button img')
       var button = document.getElementById('eraser');
       var image = button.querySelector('img');
-      console.log(screenWidth)
       if(screenWidth < 500){
         header.style.top = '40px';
       }else{
@@ -315,6 +345,7 @@
         dice.style.width = '10%';
         image.style.width = '10%';
       }
+      document.getElementById("eraser").onclick = resetansom;
     });
   </script>
 
