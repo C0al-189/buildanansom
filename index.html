@@ -113,10 +113,60 @@
       right: 50%;
       top: 20%;
     }
+
+    .dialog {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #7F7F7F;
+      padding: 20px;
+      
+      border: 5px solid #424242;
+      z-index: 9999;
+
+      font-family: 'CustomFont';
+      font-size: 16px;
+      color: #FFFFFF;
+      text-align: center; /* Text alignment */
+      text-shadow: 2px 2px 2px #000000; /* Text outline */
+    }
+
+    .dialog button{
+      background-color: #424242; /* Background color */
+      font-family: 'CustomFont';
+      font-size: 16px;
+      color: #F3A322;
+      text-align: center; /* Text alignment */
+      text-shadow: 2px 2px 2px #000000; /* Text outline */
+    }
+
+    .dialog-content {
+      text-align: center;
+    }
+
+    .dialog button {
+      margin: 10px;
+      padding: 5px 10px;
+    }
+
   </style>
 </head>
 
 <body>
+  
+  <div id="confirmationDialog" class="dialog">
+    <div class="dialog-content">
+      <p>Are you sure you want to erase your ANSOM?</p>
+      <button id="confirmButton">Yes</button>
+      <button id="cancelButton">Cancel</button>
+    </div>
+  </div>
+
+
+
+  
   <div class="top-center">
     <img id="header" class="ui" src="Header text.png" style=" position:absolute; left: 50%; max-width: 100%; height: auto;">
     <button id="dice" onclick="randombuttonclick()">
@@ -325,13 +375,33 @@
     }
 
     function resetansom() {
-      var confirmReset = window.confirm("Are you sure you want to erase?");
+      // Show the custom dialog box
+      if(wearing !== {"mouth": "", "hat": "", "glasses": "", "neck": "", "shirt": "", "holding": ""}){
+        document.getElementById('confirmationDialog').style.display = 'block';
 
-      if (confirmReset) {
-        let wearing = {"mouth": "", "hat": "", "glasses": "", "neck": "", "shirt": "", "holding": ""};
-        updateansom(wearing);
+        // Handle the confirmation button click
+        document.getElementById('confirmButton').addEventListener('click', function() {
+          // Reset the ansom
+          wearing["mouth"] = "";
+          wearing["hat"] = "";
+          wearing["glasses"] = "";
+          wearing["neck"] = "";
+          wearing["shirt"] = "";
+          wearing["holding"] = "";
+          updateansom(wearing);
+
+          // Hide the dialog box
+          document.getElementById('confirmationDialog').style.display = 'none';
+        });
+
+        // Handle the cancel button click
+        document.getElementById('cancelButton').addEventListener('click', function() {
+          // Hide the dialog box
+          document.getElementById('confirmationDialog').style.display = 'none';
+        });
       }
     }
+
     
     document.getElementById("eraser").addEventListener("click", resetansom);
     document.addEventListener('DOMContentLoaded', function() {
