@@ -76,7 +76,7 @@
       overflow: hidden;
     }
 
-    .top-center button img{
+    .top-center button img {
       position: fixed;
       top: 105px;
       left: 11%;
@@ -126,24 +126,29 @@
       transform: translate(-50%, -50%);
       background-color: #7F7F7F;
       padding: 20px;
-      
+
       border: 5px solid #424242;
       z-index: 9999;
 
       font-family: 'CustomFont';
       font-size: 16px;
       color: #FFFFFF;
-      text-align: center; /* Text alignment */
-      text-shadow: 2px 2px 2px #000000; /* Text outline */
+      text-align: center;
+      /* Text alignment */
+      text-shadow: 2px 2px 2px #000000;
+      /* Text outline */
     }
 
-    .dialog button{
-      background-color: #424242; /* Background color */
+    .dialog button {
+      background-color: #424242;
+      /* Background color */
       font-family: 'CustomFont';
       font-size: 16px;
       color: #F3A322;
-      text-align: center; /* Text alignment */
-      text-shadow: 2px 2px 2px #000000; /* Text outline */
+      text-align: center;
+      /* Text alignment */
+      text-shadow: 2px 2px 2px #000000;
+      /* Text outline */
     }
 
     .dialog-content {
@@ -154,12 +159,11 @@
       margin: 10px;
       padding: 5px 10px;
     }
-
   </style>
 </head>
 
 <body>
-  
+
   <div id="confirmationDialog" class="dialog">
     <div class="dialog-content">
       <p>Are you sure you want to erase your ANSOM?</p>
@@ -170,9 +174,10 @@
 
 
 
-  
+
   <div class="top-center">
-    <img id="header" class="ui" src="Header text.png" style=" position:absolute; left: 50%; max-width: 100%; height: auto;">
+    <img id="header" class="ui" src="Header text.png"
+      style=" position:absolute; left: 50%; max-width: 100%; height: auto;">
     <button id="dice" onclick="randombuttonclick()">
       <img src="dice.png">
     </button>
@@ -224,15 +229,15 @@
         <img src="drool_button.png"">
       </button>
     </div>
-    <div class="media-element">
-      <button id="soladdybutton" data-group="mouth" onclick="additem(this)">
-        <img src="soladdy_button.png"">
+    <div class=" media-element">
+        <button id="soladdybutton" data-group="mouth" onclick="additem(this)">
+          <img src="soladdy_button.png"">
       </button>
     </div>
     <div class=" media-element">
-        <button id="sunglassesbutton" data-group="glasses" onclick="additem(this)">
-          <img src="sunglasses_button.png">
-        </button>
+          <button id="sunglassesbutton" data-group="glasses" onclick="additem(this)">
+            <img src="sunglasses_button.png">
+          </button>
     </div>
     <div class="media-element">
       <button id="redeyesbutton" data-group="glasses" onclick="additem(this)">
@@ -335,12 +340,12 @@
   <script>
 
 
-    const mouthitem_list = ["blunt.png", "drool.png", "soladdy.png",""];
-    const hatitem_list = ["het.png", "hair.png", "crown.png", "helmet.png","panties.png",""]
+    const mouthitem_list = ["blunt.png", "drool.png", "soladdy.png", ""];
+    const hatitem_list = ["het.png", "hair.png", "crown.png", "helmet.png","panties.png", ""]
     const glasses_list = ["sunglasses.png", "red_eyes.png", "black_eye.png", ""]
     const neck_list = ["gold_chain.png", "tie.png", ""]
-    const shirt_list = ["white_shirt.png", "wif_shirt.png", "ansom_shirt.png", "binance_shirt.png","jup_shirt.png","sol_shirt.png",""]
-    const holding_list = ["boxing_gloves.png", "gun.png", "money.png", "hobbes.png", "pb_magazine.png", "laptop.png", "wallet.png", "greencandle.png", "jackdaniels.png",""]
+    const shirt_list = ["white_shirt.png", "wif_shirt.png", "ansom_shirt.png", "binance_shirt.png", "jup_shirt.png", "sol_shirt.png", ""]
+    const holding_list = ["boxing_gloves.png", "gun.png", "money.png", "hobbes.png", "pb_magazine.png", "laptop.png", "wallet.png", "greencandle.png", "jackdaniels.png", ""]
 
     const wearing = {"mouth": "", "hat": "", "glasses": "", "neck": "", "shirt": "", "holding": ""};
 
@@ -385,7 +390,7 @@
       document.getElementById('neckitem').src = wearing["neck"];
       document.getElementById('shirtitem').src = wearing["shirt"];
       document.getElementById('holdingitem').src = wearing["holding"];
-      
+
       document.getElementById('hatitem').style.display = 'none';
       document.getElementById('hatitem').offsetHeight; // This forces the browser to repaint
       document.getElementById('hatitem').style.display = 'block';
@@ -415,11 +420,11 @@
 
     function resetansom() {
       // Show the custom dialog box
-      if(wearing !== {"mouth": "", "hat": "", "glasses": "", "neck": "", "shirt": "", "holding": ""}){
+      if (wearing !== {"mouth": "", "hat": "", "glasses": "", "neck": "", "shirt": "", "holding": ""}) {
         document.getElementById('confirmationDialog').style.display = 'block';
 
         // Handle the confirmation button click
-        document.getElementById('confirmButton').addEventListener('click', function() {
+        document.getElementById('confirmButton').addEventListener('click', function () {
           // Reset the ansom
           wearing["mouth"] = "";
           wearing["hat"] = "";
@@ -434,24 +439,24 @@
         });
 
         // Handle the cancel button click
-        document.getElementById('cancelButton').addEventListener('click', function() {
+        document.getElementById('cancelButton').addEventListener('click', function () {
           // Hide the dialog box
           document.getElementById('confirmationDialog').style.display = 'none';
         });
       }
     }
 
-    
+
     document.getElementById("eraser").addEventListener("click", resetansom);
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       var screenWidth = window.innerWidth;
       var header = document.querySelector('.top-center')
       var dice = document.querySelector('.top-center button img')
       var button = document.getElementById('eraser');
       var image = button.querySelector('img');
-      if(screenWidth < 500){
+      if (screenWidth < 500) {
         header.style.top = '40px';
-      }else{
+      } else {
         header.style.top = '60px';
         dice.style.width = '10%';
         image.style.width = '10%';
