@@ -16,7 +16,6 @@
       /* Legacy Browsers */
       /* Add additional font formats if needed */
     }
-
     body {
       overflow: hidden;
       background-color: #FAB12E !important;
@@ -32,6 +31,9 @@
       max-width: 100%;
       height: auto;
       transform: translate(-50%, -50%);
+      background-size: cover; /* Scale the background image to fit inside the container */
+      background-repeat: no-repeat; /* Prevent the background image from repeating */
+      background-position: center;
     }
 
     img.ui {
@@ -159,11 +161,36 @@
       margin: 10px;
       padding: 5px 10px;
     }
+
+    #background-image-upload {
+      display: none;
+    }
+
+    /* Style for the custom file upload button */
+    .custom-file-upload {
+      cursor: pointer;
+      display: inline-block;
+      padding: 10px 10px;
+      background-color: #7E7E7E;
+      color: #fff;
+      border: solid black;
+      border-radius: 5px;
+      font-size: 12px;
+      font-family: "CustomFont";
+      text-shadow: 2px 2px 2px #000000;
+    }
+
+    /* Style for the wrapper div */
+    .file-input-wrapper {
+      position: relative;
+      margin-top: 5%;
+    }
   </style>
 </head>
 
 <body>
 
+  
   <div id="confirmationDialog" class="dialog">
     <div class="dialog-content">
       <p>Are you sure you want to erase your ANSOM?</p>
@@ -184,14 +211,22 @@
     <button id="eraser">
       <img src="eraser.png" style="position:fixed; left: 85%;">
     </button>
+    <div class="file-input-wrapper">
+      <label for="background-image-upload" class="custom-file-upload">
+        Change Background
+      </label>
+      <input type="file" id="background-image-upload" accept="image/*">
+    </div>
   </div>
-  <img class="ansom_img" src="Ansom_blank.png">
-  <img class="ansom_img" id="hatitem" src="">
-  <img class="ansom_img" id="glassesitem" src="">
-  <img class="ansom_img" id="mouthitem" src="">
-  <img class="ansom_img" id="neckitem" src="">
-  <img class="ansom_img" id="shirtitem" src="">
-  <img class="ansom_img" id="holdingitem" src="">
+  <div class="ansom-container">
+    <img class="ansom_img" src="Ansom_blank.png">
+    <img class="ansom_img" id="hatitem" src="">
+    <img class="ansom_img" id="glassesitem" src="">
+    <img class="ansom_img" id="mouthitem" src="">
+    <img class="ansom_img" id="neckitem" src="">
+    <img class="ansom_img" id="shirtitem" src="">
+    <img class="ansom_img" id="holdingitem" src="">
+  </div>
   <div class="itembuttons_scroller">
     <div class="media-element">
       <button id="hetbutton" data-group="hat" onclick="additem(this)">
@@ -462,6 +497,18 @@
         image.style.width = '10%';
       }
       document.getElementById("eraser").onclick = resetansom;
+    });
+
+    document.getElementById('background-image-upload').addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+
+      reader.onload = function(e) {
+        const imageData = e.target.result;
+        document.querySelector('.ansom_img').style.backgroundImage = `url(${imageData})`;
+      };
+
+      reader.readAsDataURL(file);
     });
   </script>
 
