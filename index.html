@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Build A $ANSOM</title>
   <link rel="icon" href="icon.png" type="image/x-icon">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
   <style>
     @font-face {
       font-family: 'CustomFont';
@@ -58,7 +59,6 @@
     }
 
     button {
-      display: inline-block;
       background: none;
       border: none;
       padding: 0;
@@ -68,9 +68,8 @@
     }
 
     .top-center {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      text-align: center;
+      position: relative;
     }
 
     .top-center img.ui {
@@ -186,11 +185,11 @@
       position: relative;
       margin-top: 5%;
     }
-    
   </style>
 </head>
 
 <body>
+
   
   <div id="confirmationDialog" class="dialog">
     <div class="dialog-content">
@@ -201,10 +200,8 @@
   </div>
 
 
-  <button id="saveButton">
-    Save as PNG
-  </button>
-    
+
+
   <div class="top-center">
     <img id="header" class="ui" src="Header text.png"
       style=" position:absolute; left: 50%; max-width: 100%; height: auto;">
@@ -221,7 +218,7 @@
       <input type="file" id="background-image-upload" accept="image/*">
     </div>
   </div>
-  <div class="ansom-container" id="ansom-container">
+  <div class="ansom-container">
     <img class="ansom_img" src="Ansom_blank.png">
     <img class="ansom_img" id="hatitem" src="">
     <img class="ansom_img" id="glassesitem" src="">
@@ -264,7 +261,7 @@
     </div>
     <div class="media-element">
       <button id="droolbutton" data-group="mouth" onclick="additem(this)">
-        <img src="drool_button.png">
+        <img src="drool_button.png"">
       </button>
     </div>
     <div class=" media-element">
@@ -376,6 +373,7 @@
 
 
   <script>
+
 
     const mouthitem_list = ["blunt.png", "drool.png", "soladdy.png", ""];
     const hatitem_list = ["het.png", "hair.png", "crown.png", "helmet.png","panties.png", ""]
@@ -513,51 +511,6 @@
 
       reader.readAsDataURL(file);
     });
-
-    // Function to save as PNG
-    function saveAsPNG() {
-        // Create a canvas element
-        var canvas = document.createElement('canvas');
-
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      
-        var context = canvas.getContext('2d');
-
-        
-
-        // Get all images with class .ansom_img
-        var images = document.querySelectorAll('.ansom_img');
-
-        // Counter to track how many images have been loaded
-        var imagesLoaded = 0;
-
-        // Load images and draw them onto the canvas
-        images.forEach(function(img) {
-            var image = new Image();
-            image.onload = function() {
-                context.drawImage(image, img.offsetLeft, img.offsetTop, img.width, img.height);
-                imagesLoaded++;
-
-                // Check if all images have been loaded
-                if (imagesLoaded === images.length) {
-                    // Convert canvas to data URL and save
-                    var dataUrl = canvas.toDataURL('image/png');
-
-                    // Create a link and click it to download the PNG
-                    var link = document.createElement('a');
-                    link.href = dataUrl;
-                    link.download = 'myansom.png';
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                }
-            };
-            image.src = img.src;
-        });
-    }
-    document.getElementById("saveButton").onclick = saveAsPNG;
-
   </script>
 
 </body>
